@@ -44,7 +44,7 @@ export default function Search(props) {
 
     return (
         <div className="app-center">
-            {modal && <MovieModal currentMovie={currentMovie} setModal={setModal}/>}
+            {modal && <MovieModal currentMovie={currentMovie} castCrew={props.castCrew} setModal={setModal}/>}
             <h1>it's search, cunt</h1>
             <form className="search-form">
                 <input 
@@ -68,6 +68,8 @@ export default function Search(props) {
               movies={searchedMovies}
               setCurrentMovie={setCurrentMovie}
               setModal={setModal}
+              castCrew={props.castCrew}
+            setCastCrew={props.setCastCrew}
               />
             })}
             {searchedMovies && search && searchedMovies.length === 0 && <h1>Sorry, no matches for your search</h1>}
@@ -75,6 +77,7 @@ export default function Search(props) {
             </div>
             {searchedMovies && <LoadMore 
             setPage={setPage}
+            page={page}
             />}
         </div>
 

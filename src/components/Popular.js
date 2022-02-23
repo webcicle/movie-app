@@ -5,7 +5,7 @@ import MovieModal from './MovieModal'
 import Filters from './Filters'
 import LoadMore from './LoadMore'
 
-export default function App(props) {
+export default function Popular(props) {
 
   const [page, setPage] = useState(1)
   const [movies, setMovies] = useState([])
@@ -20,46 +20,49 @@ export default function App(props) {
     getMovieData(POPULAR_MOVIES_URL)
 
   }, [page])
-  
+
   
   const getMovieData = async (url) => {
     const data = await fetch(url)
     const response = await data.json()
 
-    if(page === 1) {
+    if(page === 1 && movies.length === 20) {
       setMovies(response.results)
       setFiltered(response.results)
       setLoading(false)
       return
     }
-    if(page > 1) {
       setFiltered(prev => ([...prev, ...response.results]))
+      setMovies(prev => ([...prev, ...response.results]))
       setLoading(false)
-    }
   }
 
-  console.log(filtered);
+  
 
   return (
 
       <div className="app-center">
-        {modal && <MovieModal movies={movies} currentMovie={currentMovie} setModal={setModal}/>}
+        {modal && <MovieModal movies={movies} castCrew={props.castCrew} currentMovie={currentMovie} setCurrentMovie={setCurrentMovie} setModal={setModal}/>}
         <h1>Popular movies</h1>
         <Filters  movies={movies} filtered={filtered} setFiltered={setFiltered} setPage={setPage}/>
         <div className="movies-container">
-          {filtered.length > 0 ? filtered.map((movie, index) => {
+          {filtered.length > 0 && !loading ? filtered.map((movie, index) => {
               return <Movie 
               key={index} 
               movie={movie}
               movies={movies}
               setCurrentMovie={setCurrentMovie}
               setModal={setModal}
+              page={page}
+              castCrew={props.castCrew}
+              setCastCrew={props.setCastCrew}
               />
             }) : <h1>Sorry, no movies in this category</h1> }
             {loading && <h1>Loading...</h1>}
         </div>
         <LoadMore 
             setPage={setPage}
+            page={page}
         />
       </div>
             )}

@@ -1,15 +1,22 @@
 import React, {useEffect, useState} from "react"
 import './App.css';
 import Header from './Header'
+import Home from './Home'
 import Search from './Search'
 import Popular from './Popular'
+import { getCastCrew } from "../getMovieInfo";
 
 function App() {
   
   
   const [modal, setModal] = useState(false)
-  const [currentMovie, setCurrentMovie] = useState({})
-  const [module, setModule] = useState("popular")
+  const [currentMovie, setCurrentMovie] = useState([{id: 333}])
+  const [module, setModule] = useState("home")
+  const [castCrew, setCastCrew] = useState({})
+
+  // useEffect(() => {
+  //   getCastCrew(currentMovie[0].id, setCastCrew)
+  // }, [currentMovie])
   
 
   return (
@@ -17,11 +24,16 @@ function App() {
       <Header 
       setModule={setModule}
       />
+
+      {module === "home" && <Home />}
+
       {module === "popular" && <Popular 
       modal={modal}
       setModal={setModal}
       currentMovie={currentMovie}
       setCurrentMovie={setCurrentMovie}
+      castCrew={castCrew}
+      setCastCrew={setCastCrew}
       />}
       
       {module === "search" && <Search 
@@ -29,6 +41,8 @@ function App() {
       setModal={setModal}
       currentMovie={currentMovie}
       setCurrentMovie={setCurrentMovie}
+      castCrew={castCrew}
+      setCastCrew={setCastCrew}
       />}
     </div>
   );

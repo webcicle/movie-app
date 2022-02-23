@@ -1,31 +1,15 @@
 import react, {useState, useEffect} from "react";
-import {capitalize} from "../utils"
+import {capitalize, findLanguages} from "../utils"
 import GenreData from "../data/genre";
 import { nanoid } from 'nanoid'
 
-function Filters({movies, filtered, setFiltered, setPage}) {
+function Filters({movies, filtered, setFiltered, page}) {
 
     const [genre, selectGenre] = useState(0)    
     const [language, selectLanguage] = useState("all")
 
     const languages = [...new Set(movies.map(movie => (movie.original_language)))]
-    let fullLanguages = languages.map(lang => {
-        let language;
-        switch (lang){
-            case "ja":
-                language = "japanese"
-                break
-            case "hi":
-                language = "hindu"
-                break
-            case "en":
-                language = "english"
-                break
-            case "ko":
-                language = "korean"
-            }
-            return language
-    })
+    let fullLanguages = findLanguages(languages)
 
     const languagesArray = [{id:"all", name:"all"}]
     const genreArray = [{id:"0", name:"all"},...GenreData]
@@ -73,7 +57,6 @@ function Filters({movies, filtered, setFiltered, setPage}) {
         let filteredOptions = data.map((dat, index) => {
                 return <option className={`option ${option}-option`} key={index} id={dat.id} onClick={filter}>{capitalize(dat.name)} </option>
         })
-
         return filteredOptions
     }
 
