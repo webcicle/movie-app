@@ -1,11 +1,4 @@
-_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=
-=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=
-_=_=_=_=_=_=_= V I K T O R ' S _=_=_=_=\_
-_=_=_=_=_=M O V I E A P P _=_=_=_=_=_=_=_=
-=_=_=_=_=_=_=_=_=V 1.0_=_=_=_=_=_=_=_=_=_=_
-_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_
-=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=
-_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=\_
+=_ =_ =_ =_ VIKTOR'S M0VIE APP =_ =_ =_ =_
 
 Utilizing the TMDB API, Viktor's Movie App brings you acces to the movies of the world, on all platforms. Enjoy the power of React as you allow yourself to be guided through the wonders of Hollywood and Bollywood alike. Experience a new sensations among sations – presenting:
 
