@@ -13,6 +13,8 @@ function App() {
   const [currentMovie, setCurrentMovie] = useState([{id: 333}])
   const [module, setModule] = useState("home")
   const [castCrew, setCastCrew] = useState({})
+  const [isOpen, setIsOpen] = useState(true)
+
 
   // useEffect(() => {
   //   getCastCrew(currentMovie[0].id, setCastCrew)
@@ -23,6 +25,8 @@ function App() {
     <div className="App">
       <Header 
       setModule={setModule}
+      isOpen={isOpen}
+      setIsOpen={setIsOpen}
       />
 
       {module === "home" && <Home />}

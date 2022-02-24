@@ -14,4 +14,10 @@ Features:
 
 \*- A DEEPER DIVE: Click your way onto the MEDIA MODAL® and dive deeper into the cast and crew. Explore their past, present and upcoming appearances and find out what others have been saying.
 
+\*- LOAD MORE: Looking for something specific, but cant find it? Scroll down to the bottom of the page and LOAD MORE results to continue exploring.
+
 VIKTOR'S MOVIE APP ® 2022, ALL RIGHTS RESERVED
+
+Version History:
+
+1.01 - minor bug fixes and layout corrections

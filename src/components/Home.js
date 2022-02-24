@@ -19,8 +19,6 @@ export default function Home() {
         const response = await data.json()
         setTrending(response.results.slice(0,6))
     }
-
-    console.log(trending);
         
     return (
         <article className="app-center">

@@ -1,5 +1,6 @@
 :root {
 	--transition: 200ms ease-in-out;
+	--transition-long: 500ms ease-in-out;
 	--border-blk: 2px solid black;
 	--border-white: 2px solid rgb(248, 248, 248);
 	--bg-nav: hsl(43, 14%, 10%);
@@ -57,6 +58,7 @@ img {
 
 .banner {
 	position: relative;
+	z-index: 222;
 }
 
 .banner-img {
@@ -98,6 +100,16 @@ img {
 .navbar {
 	background-color: var(--bg-nav);
 	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.257);
+	transform: translateY(-100%);
+	position: absolute;
+	transition: transform var(--transition-long);
+	width: 100%;
+	z-index: 111;
+}
+
+.navbar.open {
+	/* display: block; */
+	transform: translateY(0%);
 }
 
 .nav-links {
@@ -258,7 +270,7 @@ img {
 	inset: 0;
 	height: 100%;
 	width: 100%;
-	z-index: 200;
+	z-index: 222;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -315,18 +327,19 @@ img {
 	text-decoration: none;
 }
 
-.pers-stat:last-child {
+.pers-stat.last {
 	cursor: pointer;
 	transition: color var(--transition);
 }
 
-.pers-stat:last-child:hover {
+.pers-stat.last:hover {
 	color: var(--text-grey);
 }
 .rating--star,
 .close-btn--icon {
 	width: 20px;
-	z-index: 222;
+	z-index: 333;
+	cursor: pointer;
 }
 
 .rating--star {
@@ -495,15 +508,25 @@ img {
 	font-style: italic;
 }
 
-.close-btn {
+.close-btn,
+.nav-btn {
 	position: absolute;
 	right: 1rem;
 	top: 1rem;
 	background-color: transparent;
 	border: none;
 	cursor: pointer;
-	fill: var(--text-off);
+	fill: var(--bg-main);
 	transition: fill var(--transition);
+}
+
+.nav-btn {
+	z-index: 444;
+	transition: fill var(--transition);
+}
+
+.nav-btn:hover {
+	fill: var(--bg-main--hover);
 }
 
 .close-btn:hover {
@@ -612,6 +635,7 @@ img {
 .grid-movie {
 	width: 100%;
 	position: relative;
+	z-index: 88;
 }
 
 .grid-movie::after {
@@ -623,6 +647,7 @@ img {
 	inset: 0;
 	opacity: 0;
 	transition: opacity var(--transition);
+	border-radius: 8px;
 }
 
 .grid-movie:hover::after {
@@ -669,8 +694,27 @@ img {
 		font-size: 3rem;
 	}
 
+	.navbar {
+		overflow-y: hidden;
+	}
+
+	.nav-links {
+		flex-direction: column;
+	}
+
+	.nav-links.app-center {
+		gap: 0;
+	}
+
+	.app-center h1 {
+		font-size: 1.3rem;
+	}
+
 	.nav-link {
 		font-size: 1em;
+		display: block;
+		width: 100%;
+		letter-spacing: 10px;
 	}
 
 	.trending-container {
@@ -679,6 +723,16 @@ img {
 		gap: 1.4rem;
 	}
 }
+
+@media (min-width: 572px) {
+	.navbar {
+		opacity: 1;
+		height: auto;
+		position: relative;
+		transform: translateY(0%);
+	}
+}
+
 @media (max-width: 870px) {
 	.banner-text {
 		font-size: 3rem;

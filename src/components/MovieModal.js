@@ -4,17 +4,9 @@ import "./App.css"
 import popcornImg from "../images/banner-img-popcorn.jpg"
 import MoviePosterDefault from "../images/no-poster.jpg"
 import { getPersonalCredits, getPerson } from "../getMovieInfo"
+import {CastCard} from "./CastCard"
 
 function MovieModal(props) {
-
-    // setup state for currentPerson as well and have it
-    // set when you click a face. then all the faces need to become
-    // the actor's movies and when you click them, it needs to go 
-    // back to the other and so on. 
-    // movie uses find API and ID from attribute, loads straight into
-    // currentMovie state and once person {selected} is set to false 
-    // the different fields will change. 
-
 
     const [displayedInfo, setDisplayedInfo] = useState(props.currentMovie[0])
     const [currentCredits, setCurrentCredits] = useState([])
@@ -25,6 +17,7 @@ function MovieModal(props) {
     })
 
     const handleClick = async (event) => {
+        console.log(event.target);
         const personData = await getPerson(event.target.id)
         const personCredits = await getPersonalCredits(event.target.id)
 
@@ -37,21 +30,17 @@ function MovieModal(props) {
         }
         ))
         setDisplayedInfo(personData)
-        console.log(displayedInfo);
+        setCurrentCredits(personCredits)
     }
 
-
-    
     const {name, birthday, gender, place_of_birth, also_known_as, homepage, biography, profile_path, original_language, backdrop_path, title, overview, genre_ids, id, popularity, vote_average, vote_count, original_title, poster_path, release_date} = displayedInfo
-    console.log(!Array.isArray(biography));
+
     const biographyEdit = () => {
         const cutFirst = biography && biography.split("encyclopedia.")[1]
         if(biography && cutFirst) return cutFirst.split("Description above")[0]
         if(biography && !cutFirst) return biography.split("Description above")[0]
         return 
     }
-
-    console.log(biographyEdit());
 
     const genres = genre_ids && findGenres(genre_ids)
     const backdropImg = backdrop_path != null ? `https://image.tmdb.org/t/p/w500${backdrop_path}` : popcornImg
@@ -62,23 +51,14 @@ function MovieModal(props) {
         bacgroundSize:"cover",
         backgrounRepeat: "no-repeat",
         backgroundSize: "100%",
-
     }
 
-    const CastCard = (props) => {        
-        const info = `${props.cast.name}${props.cast.character ? " as " : ", "}${props.cast.character || props.cast.job}`
-        
-        return (
-            <div className="cast-card" id={props.cast.id} data-info={info} onClick={handleClick}>
-                <img className="cast-card-img" src={props.cast.profile_path ? `https://image.tmdb.org/t/p/w500${props.cast.profile_path}` : MoviePosterDefault}></img>
-            </div>
-        )
-    }
-
+    // make the cast card "modular" like in the scrimba course and 
+    // inser necessary changes and so on
 
     function createCastCards(cast) {
         const castCards = cast.map((castMemb, index) => (
-            <CastCard cast={castMemb} key={index} setCurrentMovie={props.setCurrentMovie} />
+            <CastCard handleClick={handleClick} cast={castMemb} key={index} setCurrentMovie={props.setCurrentMovie} />
         ))
         return castCards
     }
@@ -89,9 +69,12 @@ function MovieModal(props) {
             {
             ...prev,
             selected: false,
+
         }
         ))
     }
+    console.log(currentCredits);
+    console.log(displayedInfo);
 
     const crewFilter = props.castCrew.crew.filter(crew => crew.job == "Director" || crew.job == "Producer" || crew.job == "Writer")
 
@@ -115,8 +98,8 @@ function MovieModal(props) {
                     {person.selected &&
                         <div className="pers-stats">
                             <p className="pers-stat">{gender === 2 ? "Male" : "Female"}</p>
-                            <p className="pers-stat">{`Place of birth: ${place_of_birth}`}</p>
-                            {homepage && <a href={homepage} _blank className="pers-stat">Homepage</a>}
+                            <p className="pers-stat">{place_of_birth && `Place of birth: ${place_of_birth}`}</p>
+                            {homepage && <a href={homepage} blank="blank" className="pers-stat last">Homepage</a>}
                         </div>}
                     {!person.selected &&<div className="modal--genres">{genres.map((genre, index) => <span key={index} className="modal--genre">{genre}</span>)}</div>}
                     {!person.selected &&<div className="flex modal--lang-rat">
@@ -133,7 +116,7 @@ function MovieModal(props) {
                         {<p className="modal--year">{!person.selected && `(${release_date.slice(0, 4)})`}</p>}
                     </div>
                     <div className="modal--subtitle">
-                        {person.selected && <p className="modal--subtitle modal--aka-container">Also known as: <span>{also_known_as.map(aka => (<span className="modal--aka">{`${aka}, `}</span>))}</span></p>}
+                        {person.selected && also_known_as && <p className="modal--subtitle modal--aka-container">Also known as: <span>{also_known_as.map((aka, index) => (<span key={index} className="modal--aka">{`${aka}, `}</span>))}</span></p>}
                         <div className="flex">
                             {original_title && original_title !== title && <p className="modal--og-title">{original_title}</p>} 
                             {birthday && <p className="modal--og-title">{`Birthday: ${birthday}`}</p>}

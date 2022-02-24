@@ -2,6 +2,7 @@ import { useState, useEffect } from "react/cjs/react.development";
 import Movie from "./Movie";
 import MovieModal from "./MovieModal";
 import LoadMore from "./LoadMore"
+import Filters from "./Filters";
 
 
 export default function Search(props) {
@@ -45,7 +46,7 @@ export default function Search(props) {
     return (
         <div className="app-center">
             {modal && <MovieModal currentMovie={currentMovie} castCrew={props.castCrew} setModal={setModal}/>}
-            <h1>it's search, cunt</h1>
+            <h1>It's search, for you and me, and the others</h1>
             <form className="search-form">
                 <input 
                 type="text" 
