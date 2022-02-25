@@ -17,7 +17,6 @@ function MovieModal(props) {
     })
 
     const handleClick = async (event) => {
-        console.log(event.target);
         const personData = await getPerson(event.target.id)
         const personCredits = await getPersonalCredits(event.target.id)
 
@@ -73,8 +72,6 @@ function MovieModal(props) {
         }
         ))
     }
-    console.log(currentCredits);
-    console.log(displayedInfo);
 
     const crewFilter = props.castCrew.crew.filter(crew => crew.job == "Director" || crew.job == "Producer" || crew.job == "Writer")
 

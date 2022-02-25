@@ -13,7 +13,7 @@ function App() {
   const [currentMovie, setCurrentMovie] = useState([{id: 333}])
   const [module, setModule] = useState("home")
   const [castCrew, setCastCrew] = useState({})
-  const [isOpen, setIsOpen] = useState(true)
+  const [isOpen, setIsOpen] = useState(false)
 
 
   // useEffect(() => {

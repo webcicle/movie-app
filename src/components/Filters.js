@@ -1,7 +1,6 @@
-import react, {useState, useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import {capitalize, findLanguages} from "../utils"
 import GenreData from "../data/genre";
-import { nanoid } from 'nanoid'
 
 function Filters({movies, filtered, setFiltered, page}) {
 

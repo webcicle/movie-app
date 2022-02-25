@@ -12,9 +12,6 @@ export default function Navbar(props) {
         return <li key={index}><button key={index} onClick={() => handleClick(page)} className="nav-link">{page}</button></li>
     })
 
-
-
-    console.log(props.isOpen);
     
     return (
         <nav className={`navbar ${props.isOpen ? "open" : ""}`}>        

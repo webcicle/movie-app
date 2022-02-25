@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react/cjs/react.development";
+import { useState, useEffect } from "react";
 import Movie from "./Movie";
 import MovieModal from "./MovieModal";
 import LoadMore from "./LoadMore"
@@ -8,6 +8,7 @@ import Filters from "./Filters";
 export default function Search(props) {
     const {searchURL, setMovies, movies, currentMovie, setCurrentMovie, setModal, modal} = props;
 
+    const [fetchingSearch, setFetchingSearch] = useState(true)
     const [searchedMovies, setsearchedMovies] = useState([])
     const [search, setSearch] = useState("")
     const [page, setPage] = useState(1)
@@ -28,6 +29,7 @@ export default function Search(props) {
         const response = await data.json()
         if(page === 1) setsearchedMovies(response.results)
         if(page > 1) setsearchedMovies(prev => ([...prev, ...response.results]))
+        setFetchingSearch(false)
     }
     
     function handleChange(event) {
