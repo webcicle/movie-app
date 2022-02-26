@@ -47,9 +47,9 @@ function MovieModal(props) {
     const modalBgStyles = {
         backgroundImage: `url(${backdropImg})`,
         backgroundPosition: "center",
-        bacgroundSize:"cover",
-        backgrounRepeat: "no-repeat",
-        backgroundSize: "100%",
+        backgroundSize:"cover",
+        backgroundRepeat: "no-repeat",
+        // backgroundSize: "100%",
     }
 
     // make the cast card "modular" like in the scrimba course and 
