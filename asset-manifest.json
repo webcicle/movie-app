@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/movie-app/static/css/main.16550ce6.css",
-    "main.js": "/movie-app/static/js/main.c786becd.js",
+    "main.css": "/movie-app/static/css/main.b3ad59a8.css",
+    "main.js": "/movie-app/static/js/main.99af6165.js",
     "static/media/banner-img-popcorn.jpg": "/movie-app/static/media/banner-img-popcorn.fb4d0d8d08db121fd6ca.jpg",
     "static/media/no-poster.jpg": "/movie-app/static/media/no-poster.1df8d45f3ef841ad55f3.jpg",
     "index.html": "/movie-app/index.html",
-    "main.16550ce6.css.map": "/movie-app/static/css/main.16550ce6.css.map",
-    "main.c786becd.js.map": "/movie-app/static/js/main.c786becd.js.map"
+    "main.b3ad59a8.css.map": "/movie-app/static/css/main.b3ad59a8.css.map",
+    "main.99af6165.js.map": "/movie-app/static/js/main.99af6165.js.map"
   },
   "entrypoints": [
-    "static/css/main.16550ce6.css",
-    "static/js/main.c786becd.js"
+    "static/css/main.b3ad59a8.css",
+    "static/js/main.99af6165.js"
   ]
 }
