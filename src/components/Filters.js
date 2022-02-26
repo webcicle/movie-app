@@ -23,8 +23,6 @@ function Filters({movies, filtered, setFiltered, page}) {
     useEffect(() => {
         createGenreArray()
     }, [genre, language])
-
-    let filterGenre = []
     
     function createGenreArray() {
         let filteredMovies
@@ -38,23 +36,26 @@ function Filters({movies, filtered, setFiltered, page}) {
     }
 
     function createLanguageArray(arr) {
-        if(language == "all") return setFiltered(arr)
-        return setFiltered(() => arr.filter(movie => (movie.original_language == language)))
+        if(language == "All") return setFiltered(arr)
+        return setFiltered(() => arr.filter(movie => (movie.original_language == language.slice(0,2).toLowerCase())))
 
     }
 
     
-    const filter = (event) => {
-        console.log(isNaN(event.target.id), event.target.id);
-        if (isNaN(event.target.id)) return selectLanguage(event.target.id) 
-        return selectGenre(parseInt(event.target.id))
-        
+    const languageFilter = (event) => {
+        selectLanguage(event.target.value)
+    }
+
+    const genreFilter = (event) => {
+        console.log(event.target.value);
+        const id = event.target.value != "All" ? GenreData.filter(genre => genre.name == event.target.value && genre.id) : 0
+        return id === 0 ? selectGenre(0) : selectGenre(parseInt(id[0].id));
     }
 
 
     function createOptions(data, option) {
         let filteredOptions = data.map((dat, index) => {
-                return <option className={`option ${option}-option`} key={index} id={dat.id} onClick={filter}>{capitalize(dat.name)} </option>
+                return <option className={`option ${option}-option`} key={index} id={dat.id}>{capitalize(dat.name)} </option>
         })
         return filteredOptions
     }
@@ -68,14 +69,14 @@ function Filters({movies, filtered, setFiltered, page}) {
          <div className="filter-container">
             <label className="selector-label" htmlFor="genreSelector">genre
             </label>
-            <select name="genreSelector" className="option--selector" >
+            <select onChange={genreFilter} name="genreSelector" className="option--selector" >
                 {filteredGenres}
             </select>
          </div>
         <div className="filter-container">
             <label className="selector-label" htmlFor="languageSelector">language
             </label>
-            <select name="languageSelector" className="option--selector">
+            <select onChange={languageFilter} name="languageSelector" className="option--selector">
                 {languageOptions}
             </select>
         </div>

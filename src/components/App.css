@@ -383,6 +383,10 @@ img {
 	scrollbar-width: none;
 }
 
+::-webkit-scrollbar {
+	width: 0px;
+}
+
 /* .lang-syn::-webkit-scrollbar {
 	height: 0;
 	

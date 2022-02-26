@@ -20,4 +20,11 @@ VIKTOR'S MOVIE APP ® 2022, ALL RIGHTS RESERVED
 
 Version History:
 
-1.01 - minor bug fixes and layout corrections
+1.02:
+
+- fixed search
+- fixed filters so that they work on chrome
+
+  1.01:
+
+- minor bug fixes and layout corrections
